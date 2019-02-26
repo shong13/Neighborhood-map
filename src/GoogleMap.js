@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 
+
 const mapStyles = {
 	width: '50%',
 	height: '50%'
@@ -13,15 +14,13 @@ class GoogleMap extends Component {
 		selectedPlace: {}
 	}
 
+
 	onMarkerClick = (props, marker, e) => {
 		this.setState({
 			selectedPlace: props,
 			activeMarker: marker,
 			showingInfoWindow: true
 		})
-		console.log(props)
-		console.log(marker)
-		console.log(e)
 	}
 
 	onClose = (props) => {
@@ -32,6 +31,8 @@ class GoogleMap extends Component {
 			})
 		}
 	}
+ 
+
 
 	render() {
 		return (

@@ -1,0 +1,36 @@
+#map {
+  width: 50%;
+  height: 50vh;
+}
+
+#navbar {
+	display:flex;
+	justify-content: center;
+}
+
+#navbar button {
+	position: absolute;
+	left: 0;
+	top: 0;
+	padding: 10px;
+}
+
+.places {
+	z-index: 1;
+	position: absolute;
+	top: 5%;
+	left: 0;
+	background-color: white;
+	overflow-y: scroll;
+	height:50%;
+}
+
+.toggle {
+	position: absolute;
+	right: 50%;
+}
+
+.venueInfo {
+	display: inline;
+	margin: 5px;
+}

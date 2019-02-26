@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import './App.css';
-import GoogleMap from './GoogleMap';
-import SimpleMap from './SimpleMap';
+import NavBar from './NavBar';
+import Places from './Places';
+import Map from './Map'
 
 class App extends Component {
   render() {
     return (
-      <GoogleMap/>
+      <div>
+        <Map/>
+      </div>
     );
   }
 }
