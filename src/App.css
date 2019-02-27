@@ -6,20 +6,23 @@
 /*Start NavBar styles*/
 
 #navbar {
-	display:flex;
-	justify-content: center;
+	display: flex;
+	justify-content: left;
 	background-color: #383838FF;
 }
 
-#navbar button {
-	position: absolute;
-	left: 0;
-	top: 0;
-	padding: 18px;
+#navbar .sideBarToggle {
+	margin-right: 5%;
+}
+
+.sideBarToggle:focus{
+	background-color: blue;
+	color: white;
 }
 
 #navbar .title {
 	color: white;
+	font-size: 30px;
 }
 
 /*End NavBar styles*/
@@ -28,24 +31,67 @@
 .places {
 	z-index: 1;
 	position: absolute;
-	top: 5%;
+	top: 80px;
 	left: 0;
 	background-color: black;
 	overflow-y: scroll;
 	height:100%;
 	max-width: 45%;
 }
+.places .filterTitle {
+	margin-left: 5%;
+}
 
 #placesFilter {
 	width: 75%;
-	margin: 10px;
+	margin-left: 5%;
 }
 
 .venueInfo {
 	display: block;
 	margin-left: 5%;
+	border-bottom: 4px solid white;
 }
 
 .venueInfo h2, p {
 	color: white;
+}
+
+@media only screen and (max-width: 645px) {
+	#navbar .title {
+		font-size: 20px;
+	}
+	.places {
+		top: 54px;	
+	}
+	.venueInfo h2 {
+		font-size: 20px;
+	}
+	.venueInfo p {
+		font-size: 15px;
+	}
+	.venueInfo {
+		border-bottom: 2px solid white;
+	}
+}
+
+@media only screen and (max-width: 434px) {
+	.places {
+		top: 80px;	
+	}
+	.places .filterTitle {
+		font-size: 12px;
+	}
+	.venueInfo h2 {
+		font-size: 15px;
+	}
+	.venueInfo p {
+		font-size: 12px;
+	}
+}
+
+@media only screen and (max-width: 248px) {
+	.places {
+		top: 107px;
+	}
 }

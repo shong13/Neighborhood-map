@@ -122,6 +122,9 @@ class Map extends Component {
 				places: this.markers,
 				filteredPlaces: this.markers
 			})
+		}).catch(error => {
+			console.log(error)
+			console.log("There was a problem loading the page")
 		})
 	}
 	
@@ -129,10 +132,9 @@ class Map extends Component {
 		return (
 			<div>
 				<NavBar city={this.state.city} interest={this.state.interest}/>
-				<main id="map"></main>
-				<div className="places" style={{visibility: "hidden"}}>
+				<section tabIndex="-1" className="places" style={{visibility: "hidden"}}>
 					<div>
-						<p>Filter by Name</p>
+						<p className="filterTitle">Filter by Name</p>
 						<input 	
 							id="placesFilter" 
 							type="text" 
@@ -149,7 +151,10 @@ class Map extends Component {
 							handlePlaceKey={this.handlePlaceKey}
 						/>
 					))}
-				</div>
+				</section>
+				<main>
+					<div role="application" aria-hidden="true" id="map"></div>
+				</main>
 
 			</div>
 		)

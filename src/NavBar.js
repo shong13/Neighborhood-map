@@ -1,20 +1,30 @@
 import React, { Component } from 'react';
 
 class NavBar extends Component {
+//when side bar has been toggled, shift the focus to the places div
+	clickHandler = () => {
+		const sideBar = document.querySelector(".places")
 
-	test = () => {
-		const test = document.querySelector(".places")
-		if(test.style.visibility === "hidden"){
-			test.style.visibility = "visible"
+		if(sideBar.style.visibility === "hidden"){
+			sideBar.style.visibility = "visible"
+			sideBar.focus()
 		} else {
-			test.style.visibility = "hidden"
+		 	sideBar.style.visibility = "hidden"
+		}
+		
+	}
+
+	keyHandler = (event) => {
+		const code = event.keyCode
+		if(code === 13) {
+			this.clickHandler()
 		}
 	}
 
 	render() {
 		return(
 			<div id='navbar'>
-				<button onClick={this.test}> test </button>
+				<button className="sideBarToggle" onKeyPress={(event)=>this.keyHandler} onClick={this.clickHandler}> Side Bar </button>
 				<h1 className='title'>Neighborhood Map: {this.props.city}</h1>
 			</div>
 		)
