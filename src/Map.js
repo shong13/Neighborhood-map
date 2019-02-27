@@ -7,9 +7,24 @@ class Map extends Component {
 	state = {
 		places: [],
 		city: 'San Luis Obispo',
-		interest: 'restaurant'
+		interest: 'restaurant',
+		query: '',
+		filteredPlaces: []
+	}
+	
+	/*when name of the place is clicked on the side bar, the marker will bounce and show info*/
+	handlePlaceClick = (venue) => {
+		const marker = this.state.places.find(marker => marker.id === venue.id)
+		if(marker.getAnimation() !== null) {
+			marker.setAnimation(null)
+			marker.info.close()
+		} else {
+			marker.setAnimation(window.google.maps.Animation.BOUNCE)
+			marker.info.open(window.google.maps.Map, marker)
+		}
 	}
 
+	// Implementation of map and venues from youtube tutorial https://www.youtube.com/watch?v=LvQe7xrUh7I
 	componentDidMount() {
 		let googleMapsPromise = load_google_maps()
 		let placesPromise = load_places(this.state.city, this.state.interest)
@@ -39,6 +54,23 @@ class Map extends Component {
 					name: venue.name,
 					animation: google.maps.Animation.DROP
 				})
+
+				let infowindow = new google.maps.InfoWindow({
+					content: `${venue.name} <br/> ${venue.location.address}`
+				})
+
+				marker.info=infowindow
+
+				marker.addListener('click', () => {
+					if(marker.getAnimation() !== null) {
+						marker.setAnimation(null)
+						marker.info.close()
+					} else {
+						marker.setAnimation(google.maps.Animation.BOUNCE)
+						marker.info.open(this.map, marker)
+					}
+				})
+
 				this.markers.push(marker)	
 			})
 			this.setState({
@@ -50,11 +82,11 @@ class Map extends Component {
 	render(){
 		return (
 			<div>
-				<NavBar updateCity={this.updateCity} city={this.state.city} interest={this.state.interest}/>
+				<NavBar city={this.state.city} interest={this.state.interest}/>
 				<main id="map"></main>
 				<div className="places" style={{visibility: "hidden"}}>
 					{this.state.places.map((place) => (
-						<Places key={place.venue.id} places={place}/>
+						<Places key={place.venue.id} places={place} handlePlaceClick={this.handlePlaceClick}/>
 					))}
 				</div>
 

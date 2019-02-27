@@ -1,36 +1,46 @@
 #map {
-  width: 50%;
-  height: 50vh;
+  width: 100vw;
+  height: 100vh;
 }
+
+/*Start NavBar styles*/
 
 #navbar {
 	display:flex;
 	justify-content: center;
+	background-color: #383838FF;
 }
 
 #navbar button {
 	position: absolute;
 	left: 0;
 	top: 0;
-	padding: 10px;
+	padding: 18px;
 }
 
+#navbar .title {
+	color: white;
+}
+
+/*End NavBar styles*/
+
+/*Start Places styles*/
 .places {
 	z-index: 1;
 	position: absolute;
 	top: 5%;
 	left: 0;
-	background-color: white;
+	background-color: black;
 	overflow-y: scroll;
-	height:50%;
-}
-
-.toggle {
-	position: absolute;
-	right: 50%;
+	height:100%;
+	max-width: 45%;
 }
 
 .venueInfo {
-	display: inline;
-	margin: 5px;
+	display: block;
+	margin-left: 5%;
+}
+
+.venueInfo h2, p {
+	color: white;
 }

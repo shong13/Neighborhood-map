@@ -1,3 +1,5 @@
+//Implementation of map and venues from youtube tutorial https://www.youtube.com/watch?v=LvQe7xrUh7I
+
 export function load_google_maps() {
 	return new Promise((resolve, reject) => {
 		window.resolveGoogleMapsPromise = () => {
@@ -16,6 +18,6 @@ export function load_google_maps() {
 export function load_places(city, query) {
 	let place = city
 	let interest = query
-	var apiURL = `https://api.foursquare.com/v2/venues/search?client_id=OAJ2HTHSU3WUSS4EXRZYVLZAHF4ALQNKPUCM0MQ0IIZYPEVI&client_secret=SEVVF2CXXOICNGRVQ41FOEYOJVENVSNEGK02YYYY4FMYAYBJ&v=20180323&limit=5&near=${place}&query=${interest}`
+	var apiURL = `https://api.foursquare.com/v2/venues/search?client_id=OAJ2HTHSU3WUSS4EXRZYVLZAHF4ALQNKPUCM0MQ0IIZYPEVI&client_secret=SEVVF2CXXOICNGRVQ41FOEYOJVENVSNEGK02YYYY4FMYAYBJ&v=20180323&limit=20&near=${place}&query=${interest}`
 	return fetch(apiURL).then(res => res.json())  
 }

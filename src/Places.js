@@ -4,14 +4,16 @@ class Places extends Component {
 
 	render() {
 		const { name, venue } = this.props.places
-		const address = `${venue.location.address}`
-		const address2 = `${venue.location.city}, ${venue.location.state} ${venue.location.postalCode}`
+		const address = `${venue.location.address ? venue.location.address : ""}`
+		const address2 = `${venue.location.city ? venue.location.city : ""}, 
+						${venue.location.state ? venue.location.state : ""} 
+						${venue.location.postalCode ? venue.location.postalCode : ""}`
+		
 		return (
-			<div className="venueInfo">
-				<h2 className="venueName">{name}</h2>
+			<div className="venueInfo" onClick={()=> this.props.handlePlaceClick(this.props.places)}>
+				<h2 className="venueName">{name ? name : ''}</h2>
 				<p>add image here</p>
-				<p>{address}</p>
-				<p>{address2}</p>
+				<p>{address} <br/> {address2}</p>
 				<p>operating hours (if there is any)</p>
 			</div>
 		)
