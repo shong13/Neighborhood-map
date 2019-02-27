@@ -26,6 +26,19 @@ class Map extends Component {
 		console.log(marker)
 	}
 
+	handlePlaceKey = (venue, event) => {
+		if(event.key === "Enter"){
+			const marker = this.state.places.find(marker => marker.id === venue.id)
+			if(marker.getAnimation() !== null) {
+				marker.setAnimation(null)
+				marker.info.close()
+			} else {
+				marker.setAnimation(window.google.maps.Animation.BOUNCE)
+				marker.info.open(window.google.maps.Map, marker)
+			}
+		}
+	}
+
 	queryChange = (query) => {
 		this.setState({query: query}, this.filterList)
 	}
@@ -33,7 +46,11 @@ class Map extends Component {
 	filterList = () => {
 		const placeList = []
 		this.state.places.forEach(place => {
+			//Since we already rendered allthe marker by default,
+			//hide all markers once filtering starts
 			place.setMap(null)
+			//placeList is empty every time queryChange is called so making
+			//the array take in only the ones that gets filtered
 			if(place.name.toLowerCase().includes(this.state.query.toLowerCase())){
 				console.log(place.name)
 				placeList.push(place)
@@ -71,6 +88,7 @@ class Map extends Component {
 				scrollwheel: true,
 				center: { lat: venues[0].location.lat, lng: venues[0].location.lng }
 			})
+			//to get a instance of the map
 			this.setState({
 				map: this.map
 			})
@@ -118,7 +136,7 @@ class Map extends Component {
 				<div className="places" style={{visibility: "hidden"}}>
 					<div>
 						<p>Filter by Name</p>
-						<input 
+						<input 	
 							id="placesFilter" 
 							type="text" 
 							placeholder="Restaurant Name" 
@@ -131,6 +149,7 @@ class Map extends Component {
 							key={place.venue.id} 
 							places={place} 
 							handlePlaceClick={this.handlePlaceClick}
+							handlePlaceKey={this.handlePlaceKey}
 						/>
 					))}
 				</div>

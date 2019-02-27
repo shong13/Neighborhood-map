@@ -10,7 +10,12 @@ class Places extends Component {
 						${venue.location.postalCode ? venue.location.postalCode : ""}`
 		
 		return (
-			<div className="venueInfo" onClick={()=> this.props.handlePlaceClick(this.props.places)}>
+			<div 
+				tabIndex="0" 
+				className="venueInfo" 
+				onClick={()=> this.props.handlePlaceClick(this.props.places)}
+				onKeyPress={(event)=> this.props.handlePlaceKey(this.props.places, event)}
+			>
 				<h2 className="venueName">{name ? name : ''}</h2>
 				<p>{address} <br/> {address2}</p>
 			</div>
