@@ -36,6 +36,11 @@
 	max-width: 45%;
 }
 
+#placesFilter {
+	width: 75%;
+	margin: 10px;
+}
+
 .venueInfo {
 	display: block;
 	margin-left: 5%;

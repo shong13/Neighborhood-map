@@ -15,7 +15,7 @@ class NavBar extends Component {
 		return(
 			<div id='navbar'>
 				<button onClick={this.test}> test </button>
-				<p className='title'>Neighborhood Map: {this.props.city}</p>
+				<h1 className='title'>Neighborhood Map: {this.props.city}</h1>
 			</div>
 		)
 	}

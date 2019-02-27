@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { load_google_maps, load_places } from './utils';
+import { load_google_maps, load_places} from './utils';
 import Places from './Places';
 import NavBar from './NavBar';
 
@@ -22,17 +22,20 @@ class Map extends Component {
 			marker.setAnimation(window.google.maps.Animation.BOUNCE)
 			marker.info.open(window.google.maps.Map, marker)
 		}
+		console.log(marker)
 	}
+
+
 
 	// Implementation of map and venues from youtube tutorial https://www.youtube.com/watch?v=LvQe7xrUh7I
 	componentDidMount() {
 		let googleMapsPromise = load_google_maps()
 		let placesPromise = load_places(this.state.city, this.state.interest)
-	    
 
 		Promise.all([
 			googleMapsPromise, 
 			placesPromise
+			
 		]).then(values => {
 			let google = values[0]
 			let venues = values[1].response.venues
@@ -54,9 +57,9 @@ class Map extends Component {
 					name: venue.name,
 					animation: google.maps.Animation.DROP
 				})
-
+			
 				let infowindow = new google.maps.InfoWindow({
-					content: `${venue.name} <br/> ${venue.location.address}`
+					content: `${venue.name} <br/> ${venue.location.address ? venue.location.address : "Address unavailable"}`
 				})
 
 				marker.info=infowindow
@@ -85,6 +88,10 @@ class Map extends Component {
 				<NavBar city={this.state.city} interest={this.state.interest}/>
 				<main id="map"></main>
 				<div className="places" style={{visibility: "hidden"}}>
+					<div>
+						<p>Filter by Name</p>
+						<input id="placesFilter" type="text" placeholder="Restaurant Name" value={this.state.query}/>
+					</div>
 					{this.state.places.map((place) => (
 						<Places key={place.venue.id} places={place} handlePlaceClick={this.handlePlaceClick}/>
 					))}

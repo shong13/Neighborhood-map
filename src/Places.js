@@ -12,9 +12,7 @@ class Places extends Component {
 		return (
 			<div className="venueInfo" onClick={()=> this.props.handlePlaceClick(this.props.places)}>
 				<h2 className="venueName">{name ? name : ''}</h2>
-				<p>add image here</p>
 				<p>{address} <br/> {address2}</p>
-				<p>operating hours (if there is any)</p>
 			</div>
 		)
 	}
