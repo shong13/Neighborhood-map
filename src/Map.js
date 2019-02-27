@@ -52,19 +52,16 @@ class Map extends Component {
 			//placeList is empty every time queryChange is called so making
 			//the array take in only the ones that gets filtered
 			if(place.name.toLowerCase().includes(this.state.query.toLowerCase())){
-				console.log(place.name)
 				placeList.push(place)
 			}
 		})
-		console.log(placeList)
-		placeList.forEach(list=>{
+
+		placeList.forEach((list)=>{
 			list.setMap(this.state.map)
 		})
 		this.setState({
 			filteredPlaces: placeList
 		})
-		
-		console.log("done")
 	}
 
 
