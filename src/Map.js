@@ -9,7 +9,8 @@ class Map extends Component {
 		city: 'San Luis Obispo',
 		interest: 'restaurant',
 		query: '',
-		filteredPlaces: []
+		filteredPlaces: [],
+		map: ""
 	}
 	
 	/*when name of the place is clicked on the side bar, the marker will bounce and show info*/
@@ -25,6 +26,29 @@ class Map extends Component {
 		console.log(marker)
 	}
 
+	queryChange = (query) => {
+		this.setState({query: query}, this.filterList)
+	}
+
+	filterList = () => {
+		const placeList = []
+		this.state.places.forEach(place => {
+			place.setMap(null)
+			if(place.name.toLowerCase().includes(this.state.query.toLowerCase())){
+				console.log(place.name)
+				placeList.push(place)
+			}
+		})
+		console.log(placeList)
+		placeList.forEach(list=>{
+			list.setMap(this.state.map)
+		})
+		this.setState({
+			filteredPlaces: placeList
+		})
+		
+		console.log("done")
+	}
 
 
 	// Implementation of map and venues from youtube tutorial https://www.youtube.com/watch?v=LvQe7xrUh7I
@@ -46,6 +70,9 @@ class Map extends Component {
 				zoom: 13,
 				scrollwheel: true,
 				center: { lat: venues[0].location.lat, lng: venues[0].location.lng }
+			})
+			this.setState({
+				map: this.map
 			})
 
 			venues.forEach(venue => {
@@ -77,7 +104,8 @@ class Map extends Component {
 				this.markers.push(marker)	
 			})
 			this.setState({
-				places: this.markers
+				places: this.markers,
+				filteredPlaces: this.markers
 			})
 		})
 	}
@@ -90,10 +118,20 @@ class Map extends Component {
 				<div className="places" style={{visibility: "hidden"}}>
 					<div>
 						<p>Filter by Name</p>
-						<input id="placesFilter" type="text" placeholder="Restaurant Name" value={this.state.query}/>
+						<input 
+							id="placesFilter" 
+							type="text" 
+							placeholder="Restaurant Name" 
+							value={this.state.query} 
+							onChange={(event) => this.queryChange(event.target.value)}
+						/>
 					</div>
-					{this.state.places.map((place) => (
-						<Places key={place.venue.id} places={place} handlePlaceClick={this.handlePlaceClick}/>
+					{this.state.filteredPlaces.map((place) => (
+						<Places 
+							key={place.venue.id} 
+							places={place} 
+							handlePlaceClick={this.handlePlaceClick}
+						/>
 					))}
 				</div>
 
