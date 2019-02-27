@@ -28,4 +28,5 @@ Used to fetch venues and their information
 
 ### use "npm start" command to start
 
+Sung Hong
 
