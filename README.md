@@ -20,13 +20,13 @@ Used to fetch venues and their information
 
 ## How to start
 
-### install node.js and npm
+ install node.js and npm
 
-### download the files from github repository https://github.com/shong13/Neighborhood-map
+ download the files from github repository https://github.com/shong13/Neighborhood-map
 
-### open up a terminal and navigate to project directory
+ open up a terminal and navigate to project directory
 
-### use "npm start" command to start
+ use "npm start" command to start
 
-Sung Hong
+
 
