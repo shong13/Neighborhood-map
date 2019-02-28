@@ -12,6 +12,7 @@ export function load_google_maps() {
 		script.async = true;
 		script.defer = true;
 		script.src = `https://maps.googleapis.com/maps/api/js?libraries=places&key=${API_KEY}&callback=resolveGoogleMapsPromise`;
+
 		document.body.appendChild(script);
 	})
 }

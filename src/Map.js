@@ -69,7 +69,7 @@ class Map extends Component {
 	componentDidMount() {
 		let googleMapsPromise = load_google_maps()
 		let placesPromise = load_places(this.state.city, this.state.interest)
-
+		
 		Promise.all([
 			googleMapsPromise, 
 			placesPromise
@@ -85,6 +85,7 @@ class Map extends Component {
 				scrollwheel: true,
 				center: { lat: venues[0].location.lat, lng: venues[0].location.lng }
 			})
+			
 			//to get a instance of the map
 			this.setState({
 				map: this.map
