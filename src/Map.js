@@ -73,8 +73,8 @@ class Map extends Component {
 		Promise.all([
 			googleMapsPromise, 
 			placesPromise
-			
-		]).then(values => {
+		])
+		.then(values => {
 			let google = values[0]
 			let venues = values[1].response.venues
 			
@@ -122,10 +122,8 @@ class Map extends Component {
 				places: this.markers,
 				filteredPlaces: this.markers
 			})
-		}).catch(error => {
-			console.log(error)
-			console.log("There was a problem loading the page")
-		})
+
+		}).catch(err=>{window.alert("Sorry, something went wrong! Map cannot load")})
 	}
 	
 	render(){
@@ -134,8 +132,9 @@ class Map extends Component {
 				<NavBar city={this.state.city} interest={this.state.interest}/>
 				<section tabIndex="-1" className="places" style={{visibility: "hidden"}}>
 					<div>
-						<p className="filterTitle">Filter by Name</p>
+						<label htmlFor="filterByName" className="filterTitle">Filter by Name</label>
 						<input 	
+							aria-label="Filter"
 							id="placesFilter" 
 							type="text" 
 							placeholder="Restaurant Name" 
