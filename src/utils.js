@@ -8,7 +8,7 @@ export function load_google_maps() {
 		}
 
 		const script = document.createElement("script");
-		const API_KEY = "YOUR API KEY";
+		const API_KEY = "AIzaSyD_xQ1cjjaHmbHkOpfjwUT27o4DFdKYBZs";
 		script.async = true;
 		script.defer = true;
 		script.src = `https://maps.googleapis.com/maps/api/js?libraries=places&key=${API_KEY}&callback=resolveGoogleMapsPromise`;
