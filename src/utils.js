@@ -20,6 +20,6 @@ export function load_google_maps() {
 export function load_places(city, query) {
 	let place = city
 	let interest = query
-	var apiURL = `https://api.foursquare.com/v2/venues/search?client_id=YOUR_CLIENT_ID&client_secret=YOUR_CLIENT_SECRET&v=20180323&limit=20&near=${place}&query=${interest}`
+	var apiURL = `https://api.foursquare.com/v2/venues/search?client_id=OAJ2HTHSU3WUSS4EXRZYVLZAHF4ALQNKPUCM0MQ0IIZYPEVI&client_secret=XP5QLAM0PPKAHZQT4CIGCPUBSW0QG1ZB5U4A2R4C5GIK1E0J&v=20180323&limit=20&near=${place}&query=${interest}`
 	return fetch(apiURL).then((res) => res.json())
 }
